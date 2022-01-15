@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What is Agile? &#8212; The Buzz</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Trello: Your new Work Board" href="trello-new-workboard.html" />
+    <link rel="prev" title="Planning a Project" href="chapter.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The Buzz</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Buzz
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../onboarding/chapter.html">
+   Onboarding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../onboarding/software-need.html">
+     Software You’ll Need
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../onboarding/creating-online-profile.html">
+     Creating your Online Profile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../onboarding/quick-tour-source-code.html">
+     A Quick Tour of the Source Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../onboarding/deploying-project.html">
+     Deploying the Project
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://the-buzz-demo.herokuapp.com">
+     A Working Example of the Website
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../version-control/chapter.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/what-is-git.html">
+     What is Git?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/getting-started-with-git.html">
+     Getting Started with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/making-changes-to-code.html">
+     Making Changes to our Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/git-for-code-review.html">
+     Using Git for Code Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/pull-requests-merging-branches.html">
+     Pull Requests &amp; Merging Branches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="chapter.html">
+   Planning a Project
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     What is Agile?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="trello-new-workboard.html">
+     Trello: Your new Work Board
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../web/chapter.html">
+   The Web UI
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/running-web-ui-locally.html">
+     Running the Web UI Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/writing-new-e2e-tests.html">
+     Writing New End-to-End Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/adding-message-list.html">
+     Adding the Message List
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/adding-message-view.html">
+     Adding the Message View
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../android/chapter.html">
+   The Androdi App
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../backend/chapter.html">
+   The Backend API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/running-backend-locally.html">
+     Running the Backend Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/writing-new-unit-tests.html">
+     Writing New Unit Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/writing-new-api-validators.html">
+     Writing New API Validators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/adding-routes-handle-messages.html">
+     Adding Routes to handle Messages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../database/chapter.html">
+   The Database Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../finishing-the-sprint/chapter.html">
+   Finishing the Sprint
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/alternatives.html">
+   Alternatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/fdl-1.3.html">
+   GNU Free Documentation License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/planning-a-project/what-is-agile.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/buck-ross/survival-guide"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/buck-ross/survival-guide/issues/new?title=Issue%20on%20page%20%2Fplanning-a-project/what-is-agile.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-scrum">
+   What is Scrum?
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="what-is-agile">
+<h1>What is Agile?<a class="headerlink" href="#what-is-agile" title="Permalink to this headline">¶</a></h1>
+<p>According to the <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">Agile</span></a> Manifesto,
+the <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">agile</span></a> process is all about embracing change
+through quick turnaround and continuous product delivery,
+even as the design goals for your project change significantly
+over the course of its development.
+<a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">Agile</span></a> developers place a very high value on working software,
+and while we do value things like documentation and project planning,
+we ultimately believe that these things are merely a means to an end
+and are only truly valuable as long as they serve to help us
+to better develop our software.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">Agile</span></a> Manifesto
+<span id="id1">[<a class="reference internal" href="../appendix/bibliography.html#id2">BBvB+01</a>]</span></p>
+</div>
+<p>The typical method of attaining rapid turnaround when developing a product
+using <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">agile</span></a> methodologies is to break the development process down
+into individual units of work, called “<a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a>”.
+In order to identify all of these tasks, it is often easier to start
+by identifying larger use-cases for your application called “<a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epics</span></a>”.
+For example, if you are developing a messaging app,
+you might consider an <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epic</span></a> for adding a search bar to your web UI
+so that users can more easily search through messages on the platform.</p>
+<p>Once you have an <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epic</span></a>, you can then further narrow-down the scope
+of your workload by identifying specific, individual units
+of functionality called “<a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">stories</span></a>”.
+An example of a <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">story</span></a> derived from the above <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epic</span></a>
+could be adding an option to search messages specifically by the “author” field
+of the message.
+Once we have a list of <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">stories</span></a>, we can then break those stories down
+into individual <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a>, like creating an API endpoint
+for querying the messages database according to the “author” field.
+Once all of the <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a> associated with a <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">story</span></a> are complete,
+that <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">story</span></a> is considered complete.
+The same is true of <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epics</span></a>, with regard to the <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">stories</span></a>
+of which they are composed.</p>
+<p>Typically, when you given the assignment details of a <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a>,
+you will be provided with a list of <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epics</span></a>,
+perhaps along with a few specific <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">stories</span></a>,
+which you will be required to complete before the <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a> deadline.
+Note that you will almost never be given a specific list of <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a>.
+It will be the responsibility of you and your teammates
+to create your own <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">task</span></a> list during your planning meeting at the start
+of each <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a>.</p>
+<div class="section" id="what-is-scrum">
+<h2>What is Scrum?<a class="headerlink" href="#what-is-scrum" title="Permalink to this headline">¶</a></h2>
+<p>According to the official <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">Scrum</span></a> Guide, scrum is
+“a lightweight framework that helps people, teams and organizations
+generate value through adaptive solutions for complex problems”.
+Essentially, <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">scrum</span></a> is a specific implementation of the <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">agile</span></a> method.
+While other implementations do exist,
+like <a class="reference internal" href="../appendix/glossary.html#term-Kanban"><span class="xref std std-term">kanban</span></a> and <a class="reference internal" href="../appendix/glossary.html#term-Lean-Manufacturing"><span class="xref std std-term">lean manufacturing</span></a>,
+this handbook will focus on a <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">scrum</span></a>-like method.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The Official <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">Scrum</span></a> Guide
+<span id="id2">[<a class="reference internal" href="../appendix/bibliography.html#id4">SS20</a>]</span></p>
+</div>
+<p>The scrum method is a <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a>-orient, iterative development process.
+This means that every 2 weeks or so, your team will be expected
+to produce a working product, which must include all of the new features
+that were communicated to you at the beginning of the sprint.
+It is around the same time that your team will meet to conduct a
+<a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a> planning session, during which you will assess
+all of the <a class="reference internal" href="../appendix/glossary.html#term-Epic"><span class="xref std std-term">epics</span></a> &amp; <a class="reference internal" href="../appendix/glossary.html#term-Story"><span class="xref std std-term">stories</span></a> for the next <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a>,
+and plan out all of the <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a> which you will need to complete.
+Once you’ve planned out your <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">tasks</span></a>,
+your team will then go through your <a class="reference internal" href="../appendix/glossary.html#term-Sprint"><span class="xref std std-term">sprint</span></a> plan,
+and decide who among you will be responsible for each <a class="reference internal" href="../appendix/glossary.html#term-Task"><span class="xref std std-term">task</span></a> in the plan.</p>
+<p>It’s worth noting that although the <a class="reference internal" href="../appendix/glossary.html#term-Agile"><span class="xref std std-term">agile</span></a> method we will be using
+is heavily inspired by <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">scrum</span></a>, this course is not designed to teach you
+<a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">scrum</span></a> in its entirety.
+As a result, we will be completely ignoring many aspects of <a class="reference internal" href="../appendix/glossary.html#term-Scrum"><span class="xref std std-term">scrum</span></a>,
+like daily stand-ups &amp; team rituals, which are more complex
+than our use-case requires, and are thus beyond the scope of this course.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./planning-a-project"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chapter.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Planning a Project</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="trello-new-workboard.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Trello: Your new Work Board</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Buckley Ross<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <center>
+Permission is granted to copy, distribute and/or modify this<br/>
+document under the terms of the GNU Free Documentation License,<br/>
+Version 1.3 or any later version published by the Free Software<br/>
+Foundation; with no Invariant Sections, no Front-Cover Texts, and<br/>
+no Back-Cover Texts.  A copy of the license is included in the<br/>
+section entitled "GNU Free Documentation License".
+</center>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

